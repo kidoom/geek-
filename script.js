@@ -14,44 +14,72 @@ for (var i = 0; i < ulChildren.length; i++) {
     };
 }
 
-/***********/
+/*问答 */
+var ul = document.getElementById("QA-ul");
+var ulChildren = ul.children;
+for (var i = 0; i < ulChildren.length; i++) {
+    ulChildren[i].onclick = function (event) {
+        event = event || window.event;
+        if (event.target.className == "QA-a") {
+            if (this.children[1].style.display == "none") {
+                this.children[1].style.display = "block";
+            } else {
+                this.children[1].style.display = "none";
+            }
+        };
+    };
+};
+/*复制邮箱链接 */
+var btn = document.getElementById("email");
+var content = "newthread_geek@outlook.com";
+btn.onclick = function copyToClip() {
+    var aux = document.createElement("input");
+    aux.setAttribute("value", content);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+    alert("Geek的邮箱已经复制到剪贴板了！♡(*´∀｀*)人(*´∀｀*)♡");
+};
+
+
+/**旋转木马**/
 if (screen.width > 1000) {
     var json = [{ //  0
-        width: 380,
-        top: 50,
-        left: 60,
-        opacity: 0.2,
+        width:25,
+        top:7,
+        left:7,
+        opacity: 0.7,
         zIndex: 2
     }, { // 1
-        width: 380,
-        top: 60,
-        left: 200,
-        opacity: 0.8,
+        width:25,
+        top:7,
+        left:18,
+        opacity: 0.9,
         zIndex: 3
     }, { // 2
-        width: 380,
-        top: 80,
-        left: 420,
+        top:7,
+        width:26,
+        left:36,
         opacity: 1,
         zIndex: 4
     }, { // 3
-        width: 380,
-        top: 60,
-        left: 720,
-        opacity: 0.8,
+        width:25,
+        top:7,
+        left:55,
+        opacity: 0.9,
         zIndex: 3
     }, { //4
-        width: 380,
-        top: 50,
-        left: 800,
-        opacity: 0.2,
+        width:25,
+        top:7,
+        left:68,
+        opacity: 0.7,
         zIndex: 2
     }];
     //根据json的内容把图片缓动到相应位置，同时缓动
     var liArr = document.getElementsByClassName('aboutslide');
     var next = document.getElementById('next');
     var prev = document.getElementById('prev');
-
     function move() {
         for (var i = 0; i < liArr.length; i++) {
             animation(liArr[i], json[i]);
@@ -75,29 +103,32 @@ if (screen.width > 1000) {
             var flag = true;
             //json里面有几个属性就要执行几次
             var target = 0; //记录目标位置
-            var leader = 0; //记录当前位置
+            var current = 0; //记录当前位置
             var speed = 0; //记录速度
             for (var key in json) {
                 if (key == 'opacity') {
-                    target = Math.round(json['opacity'] * 100) //0-100
-                    leader = getStyle(obj, 'opacity') * 100 //0-100
+                    target = Math.round(json['opacity'] *10) //0-100
+                    current = getStyle(obj, 'opacity') * 2 //0-100                  
                 } else {
                     target = parseInt(json[key]);
-                    leader = parseInt(getStyle(obj, key));
+                    current = parseInt(getStyle(obj, key));
                 };
-                speed = (target - leader) / 10;
+                // speed = (target - current) / 10;
+                speed = (target - current) / 1;
+                console.log(speed);
                 speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
-                leader = leader + speed; //0-100
+                current = current + speed; //0-100
                 if (key == 'opacity') {
-                    obj.style.opacity = leader / 100;
-                    obj.style.filter = "alpha(opacity=" + leader + ")";
+                    // obj.style.opacity = current / 100;
+                    obj.style.opacity = current / 10;
+                    obj.style.filter = "alpha(opacity=" + current + ")";
                 } else if (key == "zIndex") {
                     obj.style.zIndex = json['zIndex'];
                 } else {
-                    obj.style[key] = leader + "px";
+                    obj.style[key] = current + "%";
                 };
 
-                if (leader != target) {
+                if (current != target) {
                     flag = false
                 };
             };
@@ -118,6 +149,8 @@ if (screen.width > 1000) {
             return obj.currentStyle[attr];
         };
     };
+
+    /*模态框*/
     const showModal1 = document.getElementById("card1");
     const showModal2 = document.getElementById("card2");
     const showModal3 = document.getElementById("card3");
@@ -158,67 +191,51 @@ if (screen.width > 1000) {
         modal4.classList.toggle("show");
     });
 
-};
-
-
-/*问答 */
-var ul = document.getElementById("QA-ul");
-var ulChildren = ul.children;
-for (var i = 0; i < ulChildren.length; i++) {
-    ulChildren[i].onclick = function (event) {
-        event = event || window.event;
-        if (event.target.className == "QA-a") {
-            if (this.children[1].style.display == "none") {
-                this.children[1].style.display = "block";
-            } else {
-                this.children[1].style.display = "none";
-            }
-        };
+    /*链接跳转*/
+    const pointer2 = document.getElementById("pointer2");
+    const homepage = document.getElementById("homepage");
+    pointer2.onclick = function () {
+        homepage.scrollIntoView({ behavior: "smooth" });
     };
-};
-/*复制邮箱链接 */
-var btn = document.getElementById("email");
-var content = "newthread_geek@outlook.com";
-btn.onclick = function copyToClip() {
-    var aux = document.createElement("input");
-    aux.setAttribute("value", content);
-    document.body.appendChild(aux);
-    aux.select();
-    document.execCommand("copy");
-    document.body.removeChild(aux);
-    alert("Geek的邮箱已经复制到剪贴板了！♡(*´∀｀*)人(*´∀｀*)♡");
+    const intro = document.getElementById("introplace");
+    const aintro = document.getElementById("introduction");
+    aintro.onclick = function () {
+        intro.scrollIntoView({ behavior: "smooth" });
+    };
+    const about = document.getElementById("aboutplace");
+    const aabout = document.getElementById("about");
+    aabout.onclick = function () {
+        about.scrollIntoView({ behavior: "smooth" });
+    };
+    const contact = document.getElementById("contactplace");
+    const acontact = document.getElementById("contact");
+    acontact.onclick = function () {
+        contact.scrollIntoView({ behavior: "smooth" });
+    };
+    const qa = document.getElementById("qaplace");
+    const aqa = document.getElementById("qa");
+    aqa.onclick = function () {
+        qa.scrollIntoView({ behavior: "smooth" });
+    };
+/*屋顶*/
+    window.addEventListener('scroll',(move)=>{
+        const evt = move||window.event
+        evt.preventDefault()
+        let homeinner = document.getElementById("homeinner");
+        let scrollTop = document.documentElement.scrollTop;
+        let homeouter = document.getElementById("homeouter");
+        if(scrollTop>=document.documentElement.scrollHeight/13&&
+            scrollTop<document.documentElement.scrollHeight*13/13){
+            document.getElementById("homeouter").classList.add("topOfTheMiddle3")
+        }
+        if(scrollTop == 0 || scrollTop>=document.documentElement.scrollHeight*2.5/13){           
+            let dom = document.getElementById("homeouter")
+            dom.classList.remove("topOfTheMiddle3") 
+        }
+    })
 };
 
-const pointer2 = document.getElementById("pointer2");
-const homepage = document.getElementById("homepage");
-pointer2.onclick = function () {
-    homepage.scrollIntoView({ behavior: "smooth" });
-};
 
-
-const intro = document.getElementById("introplace");
-const aintro = document.getElementById("introduction");
-aintro.onclick = function(){
-    intro.scrollIntoView({behavior: "smooth"});
-};
-
-const about = document.getElementById("aboutplace");
-const aabout = document.getElementById("about");
-aabout.onclick = function(){
-    about.scrollIntoView({behavior: "smooth"});
-};
-
-const contact = document.getElementById("contactplace");
-const acontact = document.getElementById("contact");
-acontact.onclick = function(){
-    contact.scrollIntoView({behavior: "smooth"});
-};
-
-const qa = document.getElementById("qaplace");
-const aqa = document.getElementById("qa");
-aqa.onclick = function(){
-    qa.scrollIntoView({behavior: "smooth"});
-};
 
 
 

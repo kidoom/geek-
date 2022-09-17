@@ -90,9 +90,10 @@ ul {
 #homepage {
   width: 15rem;
   height: 10rem;
-  background: url(../img/首页背景-phone.jpg) no-repeat;
-  background-size: 100% auto;
   position: relative;
+}
+#homepage img {
+  width: 100%;
 }
 #geek {
   position: absolute;
@@ -178,7 +179,7 @@ ul {
   font-size: 0.5rem;
 }
 #backgoundbox #intro-box #card1 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 #backgoundbox #intro-box #card1 h1 {
@@ -192,7 +193,7 @@ ul {
   font-size: 0.74rem;
 }
 #backgoundbox #intro-box #card2 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 #backgoundbox #intro-box #card2 img {
@@ -205,12 +206,12 @@ ul {
 }
 #backgoundbox #intro-box #card2 h2 {
   color: aliceblue;
-  width: 100%;
+  width: 85%;
   text-align: center;
   font-size: 0.5rem;
 }
 #backgoundbox #intro-box #card3 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 #backgoundbox #intro-box #card3 img {
@@ -230,7 +231,7 @@ ul {
   font-size: 0.54rem;
 }
 #backgoundbox #intro-box #card4 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   border-radius: 5px;
 }
 #backgoundbox #intro-box #card4 img {
@@ -250,8 +251,8 @@ ul {
 }
 #backgoundbox #about-box {
   margin-top: 100px;
-  border: 2px solid white;
-  border-radius: 5px;
+  border: 3px solid white;
+  border-radius: 6px;
   width: 13.5rem;
   position: relative;
 }
@@ -275,7 +276,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid gainsboro;
+  border: 3px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   width: 50%!important;
   opacity: 1!important;
@@ -283,6 +284,9 @@ ul {
 }
 #backgoundbox #about-box li img {
   margin-bottom: 10px;
+}
+#backgoundbox #about-box #time p {
+  margin-top: -6px;
 }
 #backgoundbox #about-box #diversity {
   margin: 0 5px;
@@ -294,13 +298,13 @@ ul {
   margin-bottom: 8px;
   width: 90%;
   font-size: 10px;
-  color: #551A8B;
+  color: #441274;
   font-weight: 600;
 }
 #backgoundbox #contact-box {
   margin-top: 5rem;
-  border: 2px solid white;
-  border-radius: 5px;
+  border: 3px solid white;
+  border-radius: 10px;
   width: 13rem;
   display: flex;
   flex-direction: column;
@@ -337,45 +341,55 @@ ul {
   width: 90%;
   font-size: 0.44rem;
 }
-#backgoundbox #contact-box #a-mail {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-#backgoundbox #contact-box #a-mail #email {
+#backgoundbox #contact-box #email {
   cursor: pointer;
   color: #551A8B;
 }
-#backgoundbox #contact-box #a-mail #a-li {
-  margin-left: 50px;
-  width: 6rem;
+#backgoundbox #contact-box #a-li {
+  z-index: 2;
+  width: 5rem;
   height: 6rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#backgoundbox #contact-box #a-mail #a-li a {
+#backgoundbox #contact-box #a-li a {
+  color: #551A8B;
   display: block;
   background-color: aliceblue;
   width: 80%;
-  height: 35px;
+  height: 28px;
   margin-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 10px;
-  font-size: 0.6rem;
+  font-size: 0.45rem;
   font-weight: 800;
-  line-height: 35px;
+  line-height: 28px;
   text-align: center;
 }
-#backgoundbox #contact-box #a-mail #a-li a i {
+#backgoundbox #contact-box #a-li a i {
   margin-left: 2px;
 }
-#backgoundbox #contact-box #a-mail img {
-  justify-self: right;
-  width: 4.2rem;
+#backgoundbox #contact-box #mailbox {
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  position: absolute;
+}
+#backgoundbox #contact-box #envelope {
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: 25%;
+  position: absolute;
+}
+#backgoundbox #contact-box #wave {
+  bottom: 0;
+  width: 104%;
+  position: absolute;
 }
 #backgoundbox .QA-wrapper {
   width: 13rem;
